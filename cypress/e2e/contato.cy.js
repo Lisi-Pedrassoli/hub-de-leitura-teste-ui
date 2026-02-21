@@ -1,7 +1,7 @@
 describe('Funcionalidade: contato', () => {
 
   beforeEach(() => {
-    cy.visit('http://localhost:3000/index.html')
+    cy.visit('index.html')
   });
 
   it('Deve preencher formulario de contato com sucesso', () => {
