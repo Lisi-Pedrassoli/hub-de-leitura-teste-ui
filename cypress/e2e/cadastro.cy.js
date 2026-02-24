@@ -39,4 +39,18 @@ describe('Funcionalidade: Cadastro no hub de leitura', () => {
         cy.url().should('include', 'dashboard')
         cy.get('#user-name').should('contain', nome)
     });
+
+    it('Deve preencher cadastro com sucesso - Usando comando customizado', () => {
+        let email = faker.internet.email()
+        let nome = faker.person.fullName({ sex: 'female'})
+        cy.preencherCadastro(
+            //Da para usar o faker também assim gera uma informção nova a cada momento que rodar o codigo
+            nome,
+            email,
+            '44998434229',
+            'Teste@123',
+            'Teste@123'
+        )
+        cy.url().should('include', 'dashboard')
+    });
 });

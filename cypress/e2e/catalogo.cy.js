@@ -6,7 +6,7 @@ describe('Funcionalidade: catalogo de livros', () => {
         cy.visit('catalog.html')
     });
 
-    it.skip('Deve clicar no botão Adicionasr à cesta', () => {
+    it('Deve clicar no botão Adicionasr à cesta', () => {
         cy.get(':nth-child(1) > .card > .card-body > .mt-auto > .d-grid > .btn-primary').click()
         cy.get('#cart-count').should('contain', 1)
     });
