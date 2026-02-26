@@ -1,11 +1,12 @@
 //comando onde lista todos os metodos que tem no cypress quando coloco . ex: . click ou .type etc
 ///<reference types="cypress"/>
 import { faker } from '@faker-js/faker';
+import cadastroPage  from '../support/pages/cadastro-page';
 
 describe('Funcionalidade: Cadastro no hub de leitura', () => {
 
     beforeEach(() => {
-        cy.visit('register.html')
+        cadastroPage.visitarPaginaCadastro()
     });
 
     it('Deve fazer cadastro com sucesso, usando função JS', () => {
@@ -52,5 +53,16 @@ describe('Funcionalidade: Cadastro no hub de leitura', () => {
             'Teste@123'
         )
         cy.url().should('include', 'dashboard')
+    });
+
+    it('Deve fazer cadastro com sucesso usando Page Objects', () => {
+        let email = faker.internet.email()
+        cadastroPage.preencherCadastro('Elisiane Pedrassoli', email, '44998434229', 'senha123', 'senha123')
+        cy.url().should('include', 'dashboard')
+    });
+
+    it.only('Deve validar mensagem ao tentar cadastrar sem informar o nome', () => {
+         cadastroPage.preencherCadastro('', 'lisi@teste.com', '44998434229', 'senha123', 'senha123')
+         cy.get(':nth-child(1) > .invalid-feedback').should('contain', 'Nome deve ter pelo menos 2 caracteres')
     });
 });
