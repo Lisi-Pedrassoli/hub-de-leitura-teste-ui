@@ -9,6 +9,10 @@ describe('Funcionalidade: Cadastro no hub de leitura', () => {
         cadastroPage.visitarPaginaCadastro()
     });
 
+    afterEach(() => {
+        cy.screenshot()
+    });
+
     it('Deve fazer cadastro com sucesso, usando função JS', () => {
 
         //função que gera uma palavra aleatória sempre que rodo o projeto ${Date.now()}}
